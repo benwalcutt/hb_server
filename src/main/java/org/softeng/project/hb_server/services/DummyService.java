@@ -1,7 +1,6 @@
 package org.softeng.project.hb_server.services;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -21,10 +20,9 @@ public class DummyService {
 	
 	public DummyService() {
 		this.rs = null;
-		dummyList = new ArrayList();
+		dummyList = new ArrayList<dummy>();
 	}
-	
-	@SuppressWarnings("null")
+
 	public List<dummy> getAllDummys() {
 		this.rs = dataService.queryAll(TABLE_NAME);
 		try {

@@ -1,7 +1,6 @@
 package org.softeng.project.hb_server.services;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,18 +19,11 @@ public class VendorService {
 	vendor temp_vendor;
 	List<vendor> vendorList;
 	
-	UUID tempID;
-	String tempname;
-	String tempphone;
-	String tempemail;
-	Date tempdeldate;
-	
 	public VendorService() {
 		this.rs = null;
-		vendorList = new ArrayList();
+		vendorList = new ArrayList<vendor>();
 	}
 
-	@SuppressWarnings("null")
 	public List<vendor> getAllVendors() {
 		this.rs = dataService.queryAll(TABLE_NAME);
 		try {

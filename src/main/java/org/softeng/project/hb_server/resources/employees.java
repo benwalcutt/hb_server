@@ -13,9 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.xml.bind.JAXBElement;
 
 import org.softeng.project.hb_server.model.employee;
-import org.softeng.project.hb_server.model.product;
 import org.softeng.project.hb_server.services.EmployeeService;
-import org.softeng.project.hb_server.services.ProductService;
 
 @Path("/api0/employees")
 public class employees {

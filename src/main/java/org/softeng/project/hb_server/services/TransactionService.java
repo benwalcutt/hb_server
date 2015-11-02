@@ -1,9 +1,7 @@
 package org.softeng.project.hb_server.services;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,10 +19,9 @@ public class TransactionService {
 	
 	public TransactionService() {
 		this.rs = null;
-		transactionList = new ArrayList();
+		transactionList = new ArrayList<transaction>();
 	}
 
-	@SuppressWarnings("null")
 	public List<transaction> getAllTransactions() {
 		this.rs = dataService.queryAll(TABLE_NAME);
 		try {

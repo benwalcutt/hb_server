@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Date;
 import java.util.UUID;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import org.softeng.project.hb_server.model.client;
 import org.softeng.project.hb_server.model.dummy;
@@ -29,8 +27,6 @@ public class DataService {
 	
 	private final String INSERT_PREAMBLE = "INSERT INTO ";
 	private final String SELECT_PREAMBLE = "SELECT * FROM ";
-	private final String UPDATE_PREAMBLE = "UPDATE ";
-	private final String SET_PREAMBLE = " SET ";
 	
 	public DataService(String user) {
 		this.rs = null;

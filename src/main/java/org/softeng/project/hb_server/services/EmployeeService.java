@@ -1,7 +1,6 @@
 package org.softeng.project.hb_server.services;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -21,10 +20,9 @@ public class EmployeeService {
 	
 	public EmployeeService() {
 		this.rs = null;
-		employeeList = new ArrayList();
+		employeeList = new ArrayList<employee>();
 	}
 	
-	@SuppressWarnings("null")
 	public List<employee> getAllEmployees() {
 		this.rs = dataService.queryAll(TABLE_NAME);		
 		try {
