@@ -35,8 +35,8 @@ public class transactions {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<transaction> createtransaction(JAXBElement<transaction> apitransaction) {
-		return transactionService.createTransaction(apitransaction);
+	public void createtransaction(JAXBElement<transaction> apitransaction) {
+		transactionService.createTransaction(apitransaction);
+		return;
 	}
 }

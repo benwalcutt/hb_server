@@ -48,14 +48,13 @@ public class VendorService {
 		return vendorList;
 	}
 
-	public List<vendor> createVendor(JAXBElement<vendor> apivendor) {
+	public void createVendor(JAXBElement<vendor> apivendor) {
 		temp_vendor = apivendor.getValue();
 		temp_vendor.setID(UUID.randomUUID());
 		temp_vendor.setLast_del_date(new Date());
 		
 		dataService.insertOneVendor(TABLE_NAME, temp_vendor);
-		this.vendorList.add(temp_vendor);
-		return this.vendorList;
+		return;
 	}
 	
 	private vendor readFromRs(ResultSet rs) {

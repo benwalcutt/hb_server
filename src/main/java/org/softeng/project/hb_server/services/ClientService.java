@@ -47,13 +47,12 @@ public class ClientService {
 		return clientList;
 	}
 
-	public List<client> createClient(JAXBElement<client> apiclient) {
+	public void createClient(JAXBElement<client> apiclient) {
 		temp_client = apiclient.getValue();
 		temp_client.setID(UUID.randomUUID());
 		
 		dataService.insertOneClient(TABLE_NAME, temp_client);
-		this.clientList.add(temp_client);
-		return this.clientList;
+		return;
 	}
 	
 	private client readFromRs(ResultSet rs) {

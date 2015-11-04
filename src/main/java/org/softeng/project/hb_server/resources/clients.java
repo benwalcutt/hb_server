@@ -35,8 +35,8 @@ public class clients {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<client> createclient(JAXBElement<client> apiclient) {
-		return clientService.createClient(apiclient);
+	public void createclient(JAXBElement<client> apiclient) {
+		clientService.createClient(apiclient);
+		return;
 	}
 }

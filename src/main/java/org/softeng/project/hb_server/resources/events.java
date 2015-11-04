@@ -35,8 +35,8 @@ public class events {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<event> createEvent(JAXBElement<event> apievent) {
-		return eventService.createEvent(apievent);
+	public void createEvent(JAXBElement<event> apievent) {
+		eventService.createEvent(apievent);
+		return;
 	}
 }

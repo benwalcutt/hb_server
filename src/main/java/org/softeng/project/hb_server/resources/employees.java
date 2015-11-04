@@ -35,8 +35,8 @@ public class employees {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<employee> createEmployee(JAXBElement<employee> apiemployee) {
-		return employeeService.createEmployee(apiemployee);
+	public void createEmployee(JAXBElement<employee> apiemployee) {
+		employeeService.createEmployee(apiemployee);
+		return;
 	}
 }

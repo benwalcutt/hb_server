@@ -38,8 +38,9 @@ public class products {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<product> createProduct(JAXBElement<product> apiproduct) {
-		return productService.createProduct(apiproduct);
+	public String createProduct(JAXBElement<product> apiproduct) {
+		productService.createProduct(apiproduct);
+		return "Success.";
 	}
 	
 	@PUT

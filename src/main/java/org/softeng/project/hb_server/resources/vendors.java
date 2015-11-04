@@ -35,8 +35,8 @@ public class vendors {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<vendor> createvendor(JAXBElement<vendor> apivendor) {
-		return vendorService.createVendor(apivendor);
+	public void createvendor(JAXBElement<vendor> apivendor) {
+		vendorService.createVendor(apivendor);
+		return;
 	}
 }

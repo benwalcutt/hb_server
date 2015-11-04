@@ -38,6 +38,7 @@ public class DataService {
 		try {
 			Class.forName("org.postgresql.Driver");
 			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testdb", user, "default");
+			//con = DriverManager.getConnection("jdbc:postgresql://54.187.159.168:5432/testdb", user, "default");
 		} catch (Exception e) {
 			System.out.println(e);
 		}

@@ -48,12 +48,11 @@ public class EmployeeService {
 		return employeeList;
 	}
 
-	public List<employee> createEmployee(JAXBElement<employee> apiemployee) {
+	public void createEmployee(JAXBElement<employee> apiemployee) {
 		temp_employee = apiemployee.getValue();
 		temp_employee.setID(UUID.randomUUID());
 		dataService.insertOneEmployee(TABLE_NAME, temp_employee);
-		this.employeeList.add(temp_employee);
-		return this.employeeList;
+		return;
 	}
 	
 	private employee readFromRs(ResultSet rs) {

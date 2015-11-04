@@ -47,11 +47,10 @@ public class EventService {
 		return eventList;
 	}
 
-	public List<event> createEvent(JAXBElement<event> apievent) {
+	public void createEvent(JAXBElement<event> apievent) {
 		apievent.getValue().setID(UUID.randomUUID());
 		dataService.insertOneEvent(TABLE_NAME, apievent.getValue());
-		this.eventList.add(apievent.getValue());
-		return this.eventList;
+		return;
 	}
 	
 	private event readFromRs(ResultSet rs) {

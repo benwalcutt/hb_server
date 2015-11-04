@@ -47,12 +47,10 @@ public class TransactionService {
 		return transactionList;
 	}
 
-	public List<transaction> createTransaction(JAXBElement<transaction> apitransaction) {
+	public void createTransaction(JAXBElement<transaction> apitransaction) {
 		apitransaction.getValue().setID(UUID.randomUUID());
-		
 		dataService.insertOneTransaction(TABLE_NAME, apitransaction.getValue());
-		this.transactionList.add(apitransaction.getValue());
-		return this.transactionList;
+		return;
 	}
 	
 	private transaction readFromRs(ResultSet rs) {

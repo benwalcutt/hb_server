@@ -47,12 +47,11 @@ public class ProductService {
 		return productList;
 	}
 
-	public List<product> createProduct(JAXBElement<product> apiproduct) {
+	public void createProduct(JAXBElement<product> apiproduct) {
 		tempProduct = apiproduct.getValue();
 		tempProduct.setID(UUID.randomUUID());
 		dataService.insertOneProduct(TABLE_NAME, tempProduct);
-		this.productList.add(tempProduct);
-		return this.productList;
+		return;
 	}
 	
 	public void updateProductCount(UUID productID, int newcount) {
