@@ -8,6 +8,7 @@ import java.util.UUID;
 import javax.xml.bind.JAXBElement;
 
 import org.softeng.project.hb_server.data.DataService;
+import org.softeng.project.hb_server.model.address;
 import org.softeng.project.hb_server.model.client;
 
 public class ClientService {
@@ -53,6 +54,30 @@ public class ClientService {
 		
 		dataService.insertOneClient(TABLE_NAME, temp_client);
 		return;
+	}
+	
+	public void updateClientAddress(UUID clientID, address apiaddress) {
+		dataService.updateClientAddress(clientID, apiaddress);
+		return;
+	}
+	
+	public void updateClientName(UUID clientID, String newName) {
+		dataService.updateClientName(clientID, newName);
+		return;
+	}
+	
+	public void updateClientEmail(UUID clientID, String newEmail) {
+		dataService.updateClientEmail(clientID, newEmail);
+		return;
+	}
+	
+	public void updateClientPhone(UUID clientID, String newPhone) {
+		dataService.updateClientPhone(clientID, newPhone);
+		return;
+	}
+	
+	public void removeClient(UUID clientID) {
+		dataService.removeOne(TABLE_NAME, clientID);
 	}
 	
 	private client readFromRs(ResultSet rs) {

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -45,12 +46,42 @@ public class products {
 	
 	@PUT
 	@Path("/{productid}/count/{newcount}")
-	//@Consumes(MediaType.APPLICATION_JSON)
-	//@Produces(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String updateProduct(@PathParam("productid") UUID productID, @PathParam("newcount") int newcount) {
+	public String updateProductCount(@PathParam("productid") UUID productID, @PathParam("newcount") int newcount) {
 		productService.updateProductCount(productID, newcount);
 		return "Success";
+	}
+	
+	@PUT
+	@Path("/{productid}/reorder/{newreorder}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updateProductReorder(@PathParam("productid") UUID productID, @PathParam("newreorder") int newreorder) {
+		productService.updateProductReorder(productID, newreorder);
+		return "Success.";
+	}
+	
+	@PUT
+	@Path("/{productid}/name/{newname}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updateProductName(@PathParam("productid") UUID productID, @PathParam("newname") String newName) {
+		productService.updateProductName(productID, newName);
+		return "Success.";
+	}
+	
+	@PUT
+	@Path("/{productid}/cost/{newcost}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updateProductCost(@PathParam("productid") UUID productID, @PathParam("newcost") Double newCost) {
+		productService.updateProductCost(productID, newCost);
+		return "Success.";
+	}
+	
+	@DELETE
+	@Path("/{productid}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String removeProduct(@PathParam("productid") UUID productID) {
+		productService.removeProduct(productID);
+		return "Success.";
 	}
 
 }

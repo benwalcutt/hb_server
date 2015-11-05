@@ -57,6 +57,25 @@ public class VendorService {
 		return;
 	}
 	
+	public void updateVendorName(UUID vendorID, String newName) {
+		dataService.updateVendorName(vendorID, newName);
+		return;
+	}
+	
+	public void updateVendorEmail(UUID vendorID, String newEmail) {
+		dataService.updateVendorEmail(vendorID, newEmail);
+		return;
+	}
+	
+	public void updateVendorPhone(UUID vendorID, String newPhone) {
+		dataService.updateVendorPhone(vendorID, newPhone);
+		return;
+	}
+	
+	public void removeVendor(UUID vendorID) {
+		dataService.removeOne(TABLE_NAME, vendorID);
+	}
+	
 	private vendor readFromRs(ResultSet rs) {
 		try {
 			temp_vendor = new vendor();

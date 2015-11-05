@@ -8,6 +8,7 @@ import java.util.UUID;
 import javax.xml.bind.JAXBElement;
 
 import org.softeng.project.hb_server.data.DataService;
+import org.softeng.project.hb_server.model.address;
 import org.softeng.project.hb_server.model.event;
 
 
@@ -51,6 +52,18 @@ public class EventService {
 		apievent.getValue().setID(UUID.randomUUID());
 		dataService.insertOneEvent(TABLE_NAME, apievent.getValue());
 		return;
+	}
+	
+	public void updateEventAddress(UUID eventID, address apiaddress) {
+		dataService.updateEventAddress(eventID, apiaddress);
+	}
+	
+	public void updateEventClient(UUID eventID, UUID newClientID) {
+		dataService.updateEventClient(eventID, newClientID);
+	}
+	
+	public void removeEvent(UUID eventID) {
+		dataService.removeOne(TABLE_NAME, eventID);
 	}
 	
 	private event readFromRs(ResultSet rs) {

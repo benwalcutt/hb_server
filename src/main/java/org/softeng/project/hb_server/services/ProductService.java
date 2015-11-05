@@ -59,6 +59,25 @@ public class ProductService {
 		return;
 	}
 	
+	public void updateProductReorder(UUID productID, int newreorder) {
+		dataService.updateProductReorder(TABLE_NAME, productID, newreorder);
+		return;
+	}
+	
+	public void updateProductName(UUID productID, String newName) {
+		dataService.updateProductName(TABLE_NAME, productID, newName);
+		return;
+	}
+	
+	public void updateProductCost(UUID productID, Double newCost) {
+		dataService.updateProductCost(TABLE_NAME, productID, newCost);
+		return;
+	}
+	
+	public void removeProduct(UUID productID) {
+		dataService.removeOne(TABLE_NAME, productID);
+	}
+	
 	private product readFromRS(ResultSet rs) {
 		try {
 			tempProduct = new product();

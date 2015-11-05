@@ -55,6 +55,22 @@ public class EmployeeService {
 		return;
 	}
 	
+	public void updateEmployeeFirst(UUID employeeID, String newFirst) {
+		dataService.updateEmployeeFirst(employeeID, newFirst);
+	}
+	
+	public void updateEmployeeLast(UUID employeeID, String newLast) {
+		dataService.updateEmployeeLast(employeeID, newLast);
+	}
+	
+	public void updateEmployeePosition(UUID employeeID, Integer newPosition) {
+		dataService.updateEmployeePosition(employeeID, newPosition);
+	}
+	
+	public void removeEmployee(UUID employeeID) {
+		dataService.removeOne(TABLE_NAME, employeeID);
+	}
+	
 	private employee readFromRs(ResultSet rs) {
 		try {
 			temp_employee = new employee();

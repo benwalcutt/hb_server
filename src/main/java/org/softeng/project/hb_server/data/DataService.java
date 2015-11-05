@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.sql.Date;
 import java.util.UUID;
 
+import org.softeng.project.hb_server.model.address;
 import org.softeng.project.hb_server.model.client;
 import org.softeng.project.hb_server.model.dummy;
 import org.softeng.project.hb_server.model.employee;
@@ -37,6 +38,9 @@ public class DataService {
 		
 		try {
 			Class.forName("org.postgresql.Driver");
+			
+			/* switch the commented lines to change between contacting localhost and AWS server */
+			
 			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testdb", user, "default");
 			//con = DriverManager.getConnection("jdbc:postgresql://54.187.159.168:5432/testdb", user, "default");
 		} catch (Exception e) {
@@ -55,15 +59,25 @@ public class DataService {
 		return rs;
 	}
 
-	public ResultSet queryOne(String table, UUID productID) {
+	public ResultSet queryOne(String table, UUID itemID) {
 		try {
-			this.query = SELECT_PREAMBLE + table + " WHERE \"ID\" = '" + productID + "';";
+			this.query = SELECT_PREAMBLE + table + " WHERE \"ID\" = '" + itemID + "';";
 			this.stmt = this.con.createStatement();
 			this.rs = this.stmt.executeQuery(this.query);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		return this.rs;
+	}
+	
+	public void removeOne(String table, UUID itemID) {
+		try {
+			this.query = "DELETE FROM " + table + " WHERE \"ID\"=\'" + itemID + "\';";
+			this.stmt = this.con.createStatement();
+			this.stmt.execute(this.query);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
 	public void insertOneProduct(String table, product tempProduct) {
@@ -111,7 +125,6 @@ public class DataService {
 			this.ps.executeUpdate();
 			
 		} catch (SQLException e) {
-			System.out.println("bad things");
 			System.out.println(e);
 		}
 		return;
@@ -177,8 +190,6 @@ public class DataService {
 
 	public void insertOneDummy(String table, dummy tempDummy) {
 		this.query = INSERT_PREAMBLE + table + " VALUES (?)";
-		System.out.println("from insert dummy: ");
-		System.out.println(tempDummy.getID());
 		try {
 			this.ps = this.con.prepareStatement(this.query);
 			this.ps.setObject(1, tempDummy.getID());
@@ -189,14 +200,102 @@ public class DataService {
 		return;
 	}
 
-	public void updateProductCount(String table, UUID productID, Integer newcount) {
-		this.query = "UPDATE " + table + " SET count=" + newcount.toString() + " WHERE \"ID\"=\'" + productID.toString() + "\';";
+	public void updateProductCount(String table, UUID productID, Integer newCount) {
+		this.query = "UPDATE " + table + " SET count=" + newCount.toString() + " WHERE \"ID\"=\'" + productID.toString() + "\';";
+		this.executeQuery();
+	}
+	
+	public void updateProductReorder(String table, UUID productID, Integer newReorder) {
+		this.query = "UPDATE " + table + " SET reorder=" + newReorder.toString() + " WHERE \"ID\"=\'" + productID.toString() + "\';";
+		this.executeQuery();
+	}
+	
+	public void updateProductName(String table, UUID productID, String newName) {
+		this.query = "UPDATE " + table + " SET name=" + newName + " WHERE \"ID\"=\'" + productID.toString() + "\';";
+		this.executeQuery();
+	}
+	
+	public void updateProductCost(String table, UUID productID, Double newCost) {
+		this.query = "UPDATE " + table + " SET cost=" + newCost.toString() + " WHERE \"ID\"=\'" + productID.toString() + "\';";
+		this.executeQuery();
+	}
+	
+	public void updateClientAddress(UUID clientID, address newAddress) {
+		String street = newAddress.getAddress();
+		String city = newAddress.getCity();
+		String state = newAddress.getState();
+		String zip = newAddress.getZip();
+		
+		this.query = "UPDATE clients SET address=\'" + street + "\', city=\'" + city + "\', state=\'" + state + "\', zip=\'" + zip + "\' WHERE \"ID\"='" + clientID.toString() + "\';";
+		this.executeQuery();
+	}
+	
+	public void updateClientName(UUID clientID, String newName) {
+		this.query = "UPDATE clients SET name=\'" + newName + "\' WHERE \"ID\"=\'" + clientID.toString() + "\';";
+		this.executeQuery();
+	}
+	
+	public void updateClientEmail(UUID clientID, String newEmail) {
+		this.query = "UPDATE clients SET email=\'" + newEmail + "\' WHERE \"ID\"=\'" + clientID.toString() + "\';";
+		this.executeQuery();
+	}
+	
+	public void updateClientPhone(UUID clientID, String newPhone) {
+		this.query = "UPDATE clients SET phone=\'" + newPhone + "\' WHERE \"ID\"=\'" + clientID.toString() + "\';";
+		this.executeQuery();
+	}
+	
+	public void updateEventAddress(UUID eventID, address newAddress) {
+		String street = newAddress.getAddress();
+		String city = newAddress.getCity();
+		String state = newAddress.getState();
+		String zip = newAddress.getZip();
+		
+		this.query = "UPDATE events SET address=\'" + street + "\', city=\'" + city + "\', state=\'" + state + "\', zip=\'" + zip + "\' WHERE \"ID\"='" + eventID.toString() + "\';";
+		this.executeQuery();
+	}
+	
+	public void updateEventClient(UUID eventID, UUID newClientID) {
+		this.query = "UPDATE events SET Client_Id=\'" + newClientID.toString() + "\' WHERE \"ID\"=\'" + eventID.toString() + "\';";
+		this.executeQuery();
+	}
+	
+	public void updateEmployeeFirst(UUID employeeID, String newFirst) {
+		this.query = "UPDATE employees SET f_name=\'" + newFirst.toString() + "\' WHERE \"ID\"=\'" + employeeID.toString() + "\';";
+		this.executeQuery();
+	}
+	
+	public void updateEmployeeLast(UUID employeeID, String newLast) {
+		this.query = "UPDATE employees SET l_name=\'" + newLast.toString() + "\' WHERE \"ID\"=\'" + employeeID.toString() + "\';";
+		this.executeQuery();
+	}
+	
+	public void updateEmployeePosition(UUID employeeID, Integer newPosition) {
+		this.query = "UPDATE employees SET position=\'" + newPosition.toString() + "\' WHERE \"ID\"=\'" + employeeID.toString() + "\';";
+		this.executeQuery();
+	}
+	
+	public void updateVendorName(UUID vendorID, String newName) {
+		this.query = "UPDATE vendors SET name=\'" + newName + "\' WHERE \"ID\"=\'" + vendorID.toString() + "\';";
+		this.executeQuery();
+	}
+	
+	public void updateVendorEmail(UUID vendorID, String newEmail) {
+		this.query = "UPDATE vendors SET email=\'" + newEmail + "\' WHERE \"ID\"=\'" + vendorID.toString() + "\';";
+		this.executeQuery();
+	}
+	
+	public void updateVendorPhone(UUID vendorID, String newPhone) {
+		this.query = "UPDATE vendors SET phone=\'" + newPhone + "\' WHERE \"ID\"=\'" + vendorID.toString() + "\';";
+		this.executeQuery();
+	}
+	
+	private void executeQuery() {
 		try {
 			this.stmt = this.con.createStatement();
 			this.stmt.execute(this.query);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		
 	}
 }
