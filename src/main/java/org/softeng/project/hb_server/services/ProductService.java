@@ -54,24 +54,8 @@ public class ProductService {
 		return;
 	}
 	
-	public void updateProductCount(UUID productID, int newcount) {
-		dataService.updateProductCount(TABLE_NAME, productID, newcount);
-		return;
-	}
-	
-	public void updateProductReorder(UUID productID, int newreorder) {
-		dataService.updateProductReorder(TABLE_NAME, productID, newreorder);
-		return;
-	}
-	
-	public void updateProductName(UUID productID, String newName) {
-		dataService.updateProductName(TABLE_NAME, productID, newName);
-		return;
-	}
-	
-	public void updateProductCost(UUID productID, Double newCost) {
-		dataService.updateProductCost(TABLE_NAME, productID, newCost);
-		return;
+	public void updateSingleField(UUID clientID, String field, String newInfo) {
+		dataService.updateTableSingleField(TABLE_NAME, field, newInfo, clientID);
 	}
 	
 	public void removeProduct(UUID productID) {

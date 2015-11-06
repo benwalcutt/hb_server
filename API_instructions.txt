@@ -1,0 +1,73 @@
+HB_Server APIs
+
+Schema:
+	Table		Fields
+	Products	ID
+				name
+				unit
+				count
+				cost
+				reorder
+				
+	Clients		ID
+				name
+				address
+				city
+				state
+				zip
+				phone
+				email
+				
+	Employees	ID
+				f_name
+				l_name
+				email
+				password
+				position
+				
+	Events		ID
+				Date_created
+				Client_ID
+				address
+				city
+				state
+				zip
+				event_date
+				
+	TransactionsID
+				emp_id
+				product_id
+				date_time
+				
+	Vendors		ID
+				name
+				phone
+				email
+				last_del_date
+				
+APIs:
+
+Get all records:
+	GET hb_server/api0/{TABLE}
+	
+Get single record:
+	GET hb_server/api0/{TABLE}/{UUID}
+	
+Create singe record:
+	POST hb_server/api0/{TABLE}
+	*Takes in a JSON object
+	
+Modify single record (not address fields):
+	PUT hb_server/api0/{TABLE}/{ID}/{FIELD}/{NEWINFO}
+	
+Modify single record (address fields):
+	PUT hb_server/api0/{TABLE}/{ID}/address
+	*Takes in a JSON object consisting of just
+		> address
+		> city
+		> state
+		> zip
+		
+Delete single record:
+	DELETE hb_server/api0/{TABLE}/{ID}
+	

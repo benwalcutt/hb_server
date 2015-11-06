@@ -45,37 +45,13 @@ public class products {
 	}
 	
 	@PUT
-	@Path("/{productid}/count/{newcount}")
+	@Path("/{productid}/{field}/{newinfo}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String updateProductCount(@PathParam("productid") UUID productID, @PathParam("newcount") int newcount) {
-		productService.updateProductCount(productID, newcount);
+	public String updateProduct(@PathParam("productid") UUID productID, @PathParam("field") String field, @PathParam("newinfo") String newInfo) {
+		productService.updateSingleField(productID, field, newInfo);
 		return "Success";
 	}
-	
-	@PUT
-	@Path("/{productid}/reorder/{newreorder}")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String updateProductReorder(@PathParam("productid") UUID productID, @PathParam("newreorder") int newreorder) {
-		productService.updateProductReorder(productID, newreorder);
-		return "Success.";
-	}
-	
-	@PUT
-	@Path("/{productid}/name/{newname}")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String updateProductName(@PathParam("productid") UUID productID, @PathParam("newname") String newName) {
-		productService.updateProductName(productID, newName);
-		return "Success.";
-	}
-	
-	@PUT
-	@Path("/{productid}/cost/{newcost}")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String updateProductCost(@PathParam("productid") UUID productID, @PathParam("newcost") Double newCost) {
-		productService.updateProductCost(productID, newCost);
-		return "Success.";
-	}
-	
+
 	@DELETE
 	@Path("/{productid}")
 	@Produces(MediaType.TEXT_PLAIN)

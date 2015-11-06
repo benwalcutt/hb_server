@@ -55,16 +55,8 @@ public class EmployeeService {
 		return;
 	}
 	
-	public void updateEmployeeFirst(UUID employeeID, String newFirst) {
-		dataService.updateEmployeeFirst(employeeID, newFirst);
-	}
-	
-	public void updateEmployeeLast(UUID employeeID, String newLast) {
-		dataService.updateEmployeeLast(employeeID, newLast);
-	}
-	
-	public void updateEmployeePosition(UUID employeeID, Integer newPosition) {
-		dataService.updateEmployeePosition(employeeID, newPosition);
+	public void updateSingleField(UUID employeeID, String field, String newInfo) {
+		dataService.updateTableSingleField(TABLE_NAME, field, newInfo, employeeID);
 	}
 	
 	public void removeEmployee(UUID employeeID) {
@@ -78,6 +70,8 @@ public class EmployeeService {
 			temp_employee.setF_Name(this.rs.getString("f_name"));
 			temp_employee.setL_Name(this.rs.getString("l_name"));
 			temp_employee.setPosition(this.rs.getInt("position"));
+			temp_employee.setEmail(this.rs.getString("email"));
+			temp_employee.setPassword(this.rs.getString("password"));
 			
 		} catch (Exception e) {
 			System.out.println(e);

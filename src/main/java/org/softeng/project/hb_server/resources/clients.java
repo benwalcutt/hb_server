@@ -52,23 +52,10 @@ public class clients {
 	}
 	
 	@PUT
-	@Path("{clientid}/name/{newname}")
-	public void updateClientName(@PathParam("clientid") UUID clientID, @PathParam("newname") String newName) {
-		clientService.updateClientName(clientID, newName);
-		return;
-	}
-	
-	@PUT
-	@Path("{clientid}/email/{newemail}")
-	public void updateClientEmail(@PathParam("clientid") UUID clientID, @PathParam("newemail") String newEmail) {
-		clientService.updateClientEmail(clientID, newEmail);
-		return;
-	}
-	
-	@PUT
-	@Path("{clientid}/phone/{newphone}")
-	public void updateClientPhone(@PathParam("clientid") UUID clientID, @PathParam("newphone") String newPhone) {
-		clientService.updateClientPhone(clientID, newPhone);
+	@Path("/{clientid}/{field}/{newinfo}")
+	public void updateClient(@PathParam("clientid") UUID clientID, @PathParam("field") String field, @PathParam("newinfo") String newInfo) {
+		//clientService.updateClientName(clientID, newName);
+		clientService.updateSingleField(clientID, field, newInfo);
 		return;
 	}
 	

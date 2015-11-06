@@ -43,23 +43,9 @@ public class vendors {
 	}
 	
 	@PUT
-	@Path("{vendorid}/name/{newname}")
-	public void updateVendorName(@PathParam("vendorid") UUID vendorID, @PathParam("newname") String newName) {
-		vendorService.updateVendorName(vendorID, newName);
-		return;
-	}
-	
-	@PUT
-	@Path("{vendorid}/email/{newemail}")
-	public void updateVendorEmail(@PathParam("vendorid") UUID vendorID, @PathParam("newemail") String newEmail) {
-		vendorService.updateVendorEmail(vendorID, newEmail);
-		return;
-	}
-	
-	@PUT
-	@Path("{vendorid}/phone/{newphone}")
-	public void updateVendorPhone(@PathParam("vendorid") UUID vendorID, @PathParam("newphone") String newPhone) {
-		vendorService.updateVendorPhone(vendorID, newPhone);
+	@Path("{vendorid}/{field}/{newinfo}")
+	public void updateVendorName(@PathParam("vendorid") UUID vendorID, @PathParam("field") String field, @PathParam("newinfo") String newInfo) {
+		vendorService.updateSingleField(vendorID, field, newInfo);
 		return;
 	}
 	

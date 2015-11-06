@@ -14,18 +14,22 @@ public class employee {
 	private String f_name;
 	private String l_name;
 	private int position;
+	private String email;
+	private String password;
 	
 	public employee() {
 		
 	}
 	
-	public employee(UUID ID, String f_name, String l_name, int pos) {
-		this.ID = ID;
+	public employee(UUID iD, String f_name, String l_name, int position, String email, String password) {
+		ID = iD;
 		this.f_name = f_name;
 		this.l_name = l_name;
-		this.position = pos;
+		this.position = position;
+		this.email = email;
+		this.password = password;
 	}
-	
+
 	public UUID getID() {
 		return ID;
 	}
@@ -49,6 +53,22 @@ public class employee {
 	}
 	public int getPosition() {
 		return this.position;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 }

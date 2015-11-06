@@ -43,21 +43,9 @@ public class employees {
 	}
 	
 	@PUT
-	@Path("/{employeeid}/f_name/{newFirst}")
-	public void updateEmployeeFirst(@PathParam("employeeid") UUID employeeID, @PathParam("newFirst") String newFirst) {
-		employeeService.updateEmployeeFirst(employeeID, newFirst);
-	}
-	
-	@PUT
-	@Path("/{employeeid}/l_name/{newLast}")
-	public void updateEmployeeLast(@PathParam("employeeid") UUID employeeID, @PathParam("newFirst") String newLast) {
-		employeeService.updateEmployeeFirst(employeeID, newLast);
-	}
-	
-	@PUT
-	@Path("/{employeeid}/position/{newPosition}")
-	public void updateEmployeePosition(@PathParam("employeeid") UUID employeeID, @PathParam("newPosition") Integer newPosition) {
-		employeeService.updateEmployeePosition(employeeID, newPosition);
+	@Path("/{employeeid}/{field}/{newinfo}")
+	public void updateEmployee(@PathParam("employeeid") UUID employeeID, @PathParam("field") String field, @PathParam("newinfo") String newInfo) {
+		employeeService.updateSingleField(employeeID, field, newInfo);
 	}
 	
 	@DELETE

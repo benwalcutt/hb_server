@@ -38,9 +38,7 @@ public class DataService {
 		
 		try {
 			Class.forName("org.postgresql.Driver");
-			
 			/* switch the commented lines to change between contacting localhost and AWS server */
-			
 			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testdb", user, "default");
 			//con = DriverManager.getConnection("jdbc:postgresql://54.187.159.168:5432/testdb", user, "default");
 		} catch (Exception e) {
@@ -99,13 +97,15 @@ public class DataService {
 	}
 
 	public void insertOneEmployee(String table, employee temp_employee) {
-		this.query = INSERT_PREAMBLE + table + " VALUES(?, ?, ?, ?)";
+		this.query = INSERT_PREAMBLE + table + " VALUES(?, ?, ?, ?, ?, ?)";
 		try {
 			this.ps = this.con.prepareStatement(this.query);
 			this.ps.setObject(1, temp_employee.getID());
 			this.ps.setString(2, temp_employee.getF_Name());
 			this.ps.setString(3, temp_employee.getL_Name());
 			this.ps.setInt(4, temp_employee.getPosition());
+			this.ps.setString(5, temp_employee.getEmail());
+			this.ps.setString(6, temp_employee.getPassword());
 			this.ps.executeUpdate();
 			
 		} catch (Exception e) {
@@ -199,94 +199,24 @@ public class DataService {
 		}
 		return;
 	}
-
-	public void updateProductCount(String table, UUID productID, Integer newCount) {
-		this.query = "UPDATE " + table + " SET count=" + newCount.toString() + " WHERE \"ID\"=\'" + productID.toString() + "\';";
+	
+	public void updateTableSingleField(String table, String field, Object newInfo, UUID id) {
+		this.query = "UPDATE " + table + " SET " + field +"=\'" + newInfo.toString() + "\' WHERE \"ID\"=\'" + id.toString() + "\';";
 		this.executeQuery();
 	}
 	
-	public void updateProductReorder(String table, UUID productID, Integer newReorder) {
-		this.query = "UPDATE " + table + " SET reorder=" + newReorder.toString() + " WHERE \"ID\"=\'" + productID.toString() + "\';";
-		this.executeQuery();
-	}
-	
-	public void updateProductName(String table, UUID productID, String newName) {
-		this.query = "UPDATE " + table + " SET name=" + newName + " WHERE \"ID\"=\'" + productID.toString() + "\';";
-		this.executeQuery();
-	}
-	
-	public void updateProductCost(String table, UUID productID, Double newCost) {
-		this.query = "UPDATE " + table + " SET cost=" + newCost.toString() + " WHERE \"ID\"=\'" + productID.toString() + "\';";
-		this.executeQuery();
-	}
-	
-	public void updateClientAddress(UUID clientID, address newAddress) {
+	public void updateTableAddressFields(String table, address newAddress, UUID id) {
 		String street = newAddress.getAddress();
 		String city = newAddress.getCity();
 		String state = newAddress.getState();
 		String zip = newAddress.getZip();
 		
-		this.query = "UPDATE clients SET address=\'" + street + "\', city=\'" + city + "\', state=\'" + state + "\', zip=\'" + zip + "\' WHERE \"ID\"='" + clientID.toString() + "\';";
-		this.executeQuery();
-	}
-	
-	public void updateClientName(UUID clientID, String newName) {
-		this.query = "UPDATE clients SET name=\'" + newName + "\' WHERE \"ID\"=\'" + clientID.toString() + "\';";
-		this.executeQuery();
-	}
-	
-	public void updateClientEmail(UUID clientID, String newEmail) {
-		this.query = "UPDATE clients SET email=\'" + newEmail + "\' WHERE \"ID\"=\'" + clientID.toString() + "\';";
-		this.executeQuery();
-	}
-	
-	public void updateClientPhone(UUID clientID, String newPhone) {
-		this.query = "UPDATE clients SET phone=\'" + newPhone + "\' WHERE \"ID\"=\'" + clientID.toString() + "\';";
-		this.executeQuery();
-	}
-	
-	public void updateEventAddress(UUID eventID, address newAddress) {
-		String street = newAddress.getAddress();
-		String city = newAddress.getCity();
-		String state = newAddress.getState();
-		String zip = newAddress.getZip();
-		
-		this.query = "UPDATE events SET address=\'" + street + "\', city=\'" + city + "\', state=\'" + state + "\', zip=\'" + zip + "\' WHERE \"ID\"='" + eventID.toString() + "\';";
+		this.query = "UPDATE " + table + " SET address=\'" + street + "\', city=\'" + city + "\', state=\'" + state + "\', zip=\'" + zip + "\' WHERE \"ID\"='" + id.toString() + "\';";
 		this.executeQuery();
 	}
 	
 	public void updateEventClient(UUID eventID, UUID newClientID) {
 		this.query = "UPDATE events SET Client_Id=\'" + newClientID.toString() + "\' WHERE \"ID\"=\'" + eventID.toString() + "\';";
-		this.executeQuery();
-	}
-	
-	public void updateEmployeeFirst(UUID employeeID, String newFirst) {
-		this.query = "UPDATE employees SET f_name=\'" + newFirst.toString() + "\' WHERE \"ID\"=\'" + employeeID.toString() + "\';";
-		this.executeQuery();
-	}
-	
-	public void updateEmployeeLast(UUID employeeID, String newLast) {
-		this.query = "UPDATE employees SET l_name=\'" + newLast.toString() + "\' WHERE \"ID\"=\'" + employeeID.toString() + "\';";
-		this.executeQuery();
-	}
-	
-	public void updateEmployeePosition(UUID employeeID, Integer newPosition) {
-		this.query = "UPDATE employees SET position=\'" + newPosition.toString() + "\' WHERE \"ID\"=\'" + employeeID.toString() + "\';";
-		this.executeQuery();
-	}
-	
-	public void updateVendorName(UUID vendorID, String newName) {
-		this.query = "UPDATE vendors SET name=\'" + newName + "\' WHERE \"ID\"=\'" + vendorID.toString() + "\';";
-		this.executeQuery();
-	}
-	
-	public void updateVendorEmail(UUID vendorID, String newEmail) {
-		this.query = "UPDATE vendors SET email=\'" + newEmail + "\' WHERE \"ID\"=\'" + vendorID.toString() + "\';";
-		this.executeQuery();
-	}
-	
-	public void updateVendorPhone(UUID vendorID, String newPhone) {
-		this.query = "UPDATE vendors SET phone=\'" + newPhone + "\' WHERE \"ID\"=\'" + vendorID.toString() + "\';";
 		this.executeQuery();
 	}
 	

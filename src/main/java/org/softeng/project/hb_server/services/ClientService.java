@@ -56,24 +56,13 @@ public class ClientService {
 		return;
 	}
 	
-	public void updateClientAddress(UUID clientID, address apiaddress) {
-		dataService.updateClientAddress(clientID, apiaddress);
+	public void updateClientAddress(UUID clientID, address apiAddress) {
+		dataService.updateTableAddressFields(TABLE_NAME, apiAddress, clientID);
 		return;
 	}
 	
-	public void updateClientName(UUID clientID, String newName) {
-		dataService.updateClientName(clientID, newName);
-		return;
-	}
-	
-	public void updateClientEmail(UUID clientID, String newEmail) {
-		dataService.updateClientEmail(clientID, newEmail);
-		return;
-	}
-	
-	public void updateClientPhone(UUID clientID, String newPhone) {
-		dataService.updateClientPhone(clientID, newPhone);
-		return;
+	public void updateSingleField(UUID clientID, String field, Object newInfo) {
+		dataService.updateTableSingleField(TABLE_NAME, field, newInfo, clientID);
 	}
 	
 	public void removeClient(UUID clientID) {

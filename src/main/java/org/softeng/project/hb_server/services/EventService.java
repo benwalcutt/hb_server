@@ -55,7 +55,7 @@ public class EventService {
 	}
 	
 	public void updateEventAddress(UUID eventID, address apiaddress) {
-		dataService.updateEventAddress(eventID, apiaddress);
+		dataService.updateTableAddressFields(TABLE_NAME, apiaddress, eventID);
 	}
 	
 	public void updateEventClient(UUID eventID, UUID newClientID) {
