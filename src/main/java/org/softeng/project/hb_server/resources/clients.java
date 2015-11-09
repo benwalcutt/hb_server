@@ -32,7 +32,7 @@ public class clients {
 	@GET
 	@Path("/{clientid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<client> getClient(@PathParam("clientid") UUID clientID) {
+	public client getClient(@PathParam("clientid") UUID clientID) {
 		return clientService.getClient(clientID);
 	}
 	

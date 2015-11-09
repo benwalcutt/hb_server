@@ -29,7 +29,7 @@ public class transactions {
 	@GET
 	@Path("/{transactionid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<transaction> getProduct(@PathParam("transactionid") UUID transactionID) {
+	public transaction getProduct(@PathParam("transactionid") UUID transactionID) {
 		return transactionService.getTransaction(transactionID);
 	}
 	

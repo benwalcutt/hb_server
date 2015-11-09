@@ -35,16 +35,16 @@ public class ProductService {
 		return productList;
 	}
 
-	public List<product> getProduct(UUID productID) {
+	public product getProduct(UUID productID) {
 		this.rs = dataService.queryOne(TABLE_NAME, productID);
-		try {
+		try {/*
 			while (this.rs.next()) {
 				this.productList.add(readFromRS(rs));
-			}
+			}*/
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		return productList;
+		return readFromRS(rs);
 	}
 
 	public void createProduct(JAXBElement<product> apiproduct) {

@@ -36,16 +36,9 @@ public class EventService {
 		return eventList;
 	}
 
-	public List<event> getEvent(UUID eventID) {
+	public event getEvent(UUID eventID) {
 		this.rs = dataService.queryOne(TABLE_NAME, eventID);
-		try {
-			while (this.rs.next()) {
-				this.eventList.add(readFromRs(rs));
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return eventList;
+		return readFromRs(rs);
 	}
 
 	public void createEvent(JAXBElement<event> apievent) {

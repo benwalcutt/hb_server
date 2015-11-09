@@ -35,17 +35,9 @@ public class EmployeeService {
 		return employeeList;
 	}
 
-	public List<employee> getEmployee(UUID employeeID) {
+	public employee getEmployee(UUID employeeID) {
 		this.rs = dataService.queryOne(TABLE_NAME, employeeID);
-		
-		try {
-			while (this.rs.next()) {
-				this.employeeList.add(readFromRs(rs));
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return employeeList;
+		return readFromRs(rs);
 	}
 
 	public void createEmployee(JAXBElement<employee> apiemployee) {

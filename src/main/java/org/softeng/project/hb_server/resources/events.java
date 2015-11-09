@@ -32,7 +32,7 @@ public class events {
 	@GET
 	@Path("/{eventid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<event> getProduct(@PathParam("eventid") UUID eventID) {
+	public event getProduct(@PathParam("eventid") UUID eventID) {
 		return eventService.getEvent(eventID);
 	}
 	

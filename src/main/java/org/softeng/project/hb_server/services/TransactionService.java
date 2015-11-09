@@ -35,16 +35,9 @@ public class TransactionService {
 		return transactionList;
 	}
 
-	public List<transaction> getTransaction(UUID transactionID) {
+	public transaction getTransaction(UUID transactionID) {
 		this.rs = dataService.queryOne(TABLE_NAME, transactionID);		
-		try {
-			while (this.rs.next()) {
-				this.transactionList.add(readFromRs(rs));
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return transactionList;
+		return readFromRs(rs);
 	}
 
 	public void createTransaction(JAXBElement<transaction> apitransaction) {

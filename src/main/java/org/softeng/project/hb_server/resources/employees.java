@@ -31,7 +31,7 @@ public class employees {
 	@GET
 	@Path("/{employeeid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<employee> getProduct(@PathParam("employeeid") UUID employeeID) {
+	public employee getProduct(@PathParam("employeeid") UUID employeeID) {
 		return employeeService.getEmployee(employeeID);
 	}
 	

@@ -31,7 +31,7 @@ public class vendors {
 	@GET
 	@Path("/{vendorid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<vendor> getProduct(@PathParam("vendorid") UUID vendorID) {
+	public vendor getProduct(@PathParam("vendorid") UUID vendorID) {
 		return vendorService.getVendor(vendorID);
 	}
 	

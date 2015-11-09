@@ -32,7 +32,7 @@ public class products {
 	@GET
 	@Path("/{productid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<product> getProduct(@PathParam("productid") UUID productID) {
+	public product getProduct(@PathParam("productid") UUID productID) {
 		return productService.getProduct(productID);
 	}
 	

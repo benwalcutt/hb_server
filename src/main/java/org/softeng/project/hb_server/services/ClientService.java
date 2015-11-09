@@ -36,16 +36,9 @@ public class ClientService {
 		return clientList;
 	}
 
-	public List<client> getClient(UUID clientID) {
+	public client getClient(UUID clientID) {
 		this.rs = dataService.queryOne(TABLE_NAME, clientID);
-		try {
-			while (this.rs.next()) {
-				this.clientList.add(readFromRs(rs));
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return clientList;
+		return readFromRs(rs);
 	}
 
 	public void createClient(JAXBElement<client> apiclient) {

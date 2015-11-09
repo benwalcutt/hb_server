@@ -36,16 +36,9 @@ public class VendorService {
 		return vendorList;
 	}
 
-	public List<vendor> getVendor(UUID vendorID) {
+	public vendor getVendor(UUID vendorID) {
 		this.rs = dataService.queryOne(TABLE_NAME, vendorID);
-		try {
-			while (this.rs.next()) {
-				this.vendorList.add(readFromRs(rs));
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return vendorList;
+		return readFromRs(rs);
 	}
 
 	public void createVendor(JAXBElement<vendor> apivendor) {
