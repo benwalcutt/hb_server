@@ -1,6 +1,7 @@
 package org.softeng.project.hb_server.services;
 
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -63,11 +64,13 @@ public class EventService {
 		try {
 			temp_event = new event();
 			temp_event.setID(UUID.fromString(this.rs.getString("ID")));
+			temp_event.setDate_created((Timestamp)this.rs.getObject("date_created"));
 			temp_event.setClient_ID(UUID.fromString(this.rs.getString("client_id")));
 			temp_event.setAddress(this.rs.getString("address"));
 			temp_event.setCity(this.rs.getString("city"));
 			temp_event.setState(this.rs.getString("state"));
-			temp_event.setZip(this.rs.getString("zip"));			
+			temp_event.setZip(this.rs.getString("zip"));
+			temp_event.setEvent_date((Timestamp)this.rs.getObject("event_date"));
 		} catch (Exception e) {
 			System.out.println(e);
 		}

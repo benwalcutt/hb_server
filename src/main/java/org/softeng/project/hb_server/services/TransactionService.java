@@ -1,6 +1,7 @@
 package org.softeng.project.hb_server.services;
 
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -52,7 +53,7 @@ public class TransactionService {
 			temp_transaction.setID(UUID.fromString(this.rs.getString("ID")));
 			temp_transaction.setEmp(UUID.fromString(this.rs.getString("emp_ID")));
 			temp_transaction.setProd(UUID.fromString(this.rs.getString("product_ID")));
-			temp_transaction.setDate_time(this.rs.getDate(4));
+			temp_transaction.setDate_time((Timestamp) this.rs.getObject(4));
 		} catch (Exception e) {
 			System.out.println(e);
 		}

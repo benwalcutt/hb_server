@@ -1,8 +1,8 @@
 package org.softeng.project.hb_server.services;
 
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -44,7 +44,7 @@ public class VendorService {
 	public void createVendor(JAXBElement<vendor> apivendor) {
 		temp_vendor = apivendor.getValue();
 		temp_vendor.setID(UUID.randomUUID());
-		temp_vendor.setLast_del_date(new Date());
+		temp_vendor.setLast_del_date(new Timestamp(new java.util.Date().getTime()));
 		
 		dataService.insertOneVendor(TABLE_NAME, temp_vendor);
 		return;
@@ -65,6 +65,7 @@ public class VendorService {
 			temp_vendor.setName(this.rs.getString("name"));
 			temp_vendor.setPhone(this.rs.getString("phone"));
 			temp_vendor.setEmail(this.rs.getString("email"));
+			temp_vendor.setLast_del_date((Timestamp)this.rs.getObject("last_del_date"));
 		} catch (Exception e) {
 			System.out.println(e);
 		}

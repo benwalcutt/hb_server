@@ -1,6 +1,6 @@
 package org.softeng.project.hb_server.model;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.UUID;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -13,14 +13,14 @@ public class vendor {
 	private String name;
 	private String phone;
 	private String email;
-	private Date last_del_date;
+	private Timestamp last_del_date;
 	
 	public vendor() {
 		
 	}
 	
 	public vendor(UUID iD, String name, String phone, String email,
-			Date last_del_date) {
+			Timestamp last_del_date) {
 		ID = iD;
 		this.name = name;
 		this.phone = phone;
@@ -51,10 +51,10 @@ public class vendor {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getLast_del_date() {
+	public Timestamp getLast_del_date() {
 		return last_del_date;
 	}
-	public void setLast_del_date(Date last_del_date) {
+	public void setLast_del_date(Timestamp last_del_date) {
 		this.last_del_date = last_del_date;
 	}
 }

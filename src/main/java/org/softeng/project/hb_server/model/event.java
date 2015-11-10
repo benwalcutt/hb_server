@@ -1,6 +1,6 @@
 package org.softeng.project.hb_server.model;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -12,21 +12,21 @@ import org.softeng.project.hb_server.adapters.UUIDAdapter;
 public class event {
 	@XmlJavaTypeAdapter(UUIDAdapter.class)
 	private UUID ID;
-	private Date date_created;
+	private Timestamp date_created;
 	@XmlJavaTypeAdapter(UUIDAdapter.class)
 	private UUID client_ID;
 	private String address;
 	private String city;
 	private String state;
 	private String zip;
-	private Date event_date;
+	private Timestamp event_date;
 	
 	public event() {
 		
 	}
 	
-	public event(UUID iD, Date date_created, UUID client_ID, String address,
-			String city, String state, String zip, Date event_date) {
+	public event(UUID iD, Timestamp date_created, UUID client_ID, String address,
+			String city, String state, String zip, Timestamp event_date) {
 		ID = iD;
 		this.date_created = date_created;
 		this.client_ID = client_ID;
@@ -43,10 +43,10 @@ public class event {
 	public void setID(UUID iD) {
 		ID = iD;
 	}
-	public Date getDate_created() {
+	public Timestamp getDate_created() {
 		return date_created;
 	}
-	public void setDate_created(Date date_created) {
+	public void setDate_created(Timestamp date_created) {
 		this.date_created = date_created;
 	}
 	public UUID getClient_ID() {
@@ -79,10 +79,10 @@ public class event {
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-	public Date getEvent_date() {
+	public Timestamp getEvent_date() {
 		return event_date;
 	}
-	public void setEvent_date(Date event_date) {
+	public void setEvent_date(Timestamp event_date) {
 		this.event_date = event_date;
 	}
 }

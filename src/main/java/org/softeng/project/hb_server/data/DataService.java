@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.sql.Date;
 import java.util.UUID;
 
@@ -121,7 +122,7 @@ public class DataService {
 			this.ps.setObject(1, temp_transaction.getID());
 			this.ps.setObject(2, temp_transaction.getEmp());
 			this.ps.setObject(3, temp_transaction.getProd());
-			this.ps.setObject(4, new Date(today.getTime()));
+			this.ps.setObject(4, new Timestamp(new java.util.Date().getTime()));
 			this.ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -157,13 +158,13 @@ public class DataService {
 		try {
 			this.ps = this.con.prepareStatement(this.query);
 			this.ps.setObject(1, temp_event.getID());
-			this.ps.setObject(2, new Date(today.getTime()));
+			this.ps.setObject(2, new Timestamp(new java.util.Date().getTime()));
 			this.ps.setObject(3, temp_event.getClient_ID());
 			this.ps.setObject(4, temp_event.getAddress());
 			this.ps.setObject(5, temp_event.getCity());
 			this.ps.setObject(6, temp_event.getState());
 			this.ps.setObject(7, temp_event.getZip());
-			this.ps.setObject(8, new Date(today.getTime()));
+			this.ps.setObject(8, new Timestamp(new java.util.Date().getTime()));
 			this.ps.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -179,7 +180,7 @@ public class DataService {
 			this.ps.setObject(2, temp_vendor.getName());
 			this.ps.setObject(3, temp_vendor.getPhone());
 			this.ps.setObject(4, temp_vendor.getEmail());
-			this.ps.setObject(5, new Date(today.getTime()));
+			this.ps.setObject(5, new Timestamp(new java.util.Date().getTime()));
 			
 			this.ps.executeUpdate();
 		} catch (Exception e) {
