@@ -56,6 +56,7 @@ public class TransactionService {
 			temp_transaction.setDate_time((Timestamp) this.rs.getObject(4));
 		} catch (Exception e) {
 			System.out.println(e);
+			return null;
 		}
 		return temp_transaction;
 	}

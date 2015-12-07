@@ -54,8 +54,12 @@ public class ProductService {
 		return;
 	}
 	
-	public void updateSingleField(UUID clientID, String field, String newInfo) {
-		dataService.updateTableSingleField(TABLE_NAME, field, newInfo, clientID);
+	public boolean updateSingleField(UUID clientID, String field, String newInfo) {
+		if (this.getProduct(clientID) != null) {	
+			dataService.updateTableSingleField(TABLE_NAME, field, newInfo, clientID);
+			return true;
+		}
+		return false;
 	}
 	
 	public void removeProduct(UUID productID) {
@@ -73,6 +77,7 @@ public class ProductService {
 			tempProduct.setReorder(this.rs.getInt("reorder"));
 		} catch (Exception e) {
 			System.out.println(e);
+			return null;
 		}
 		return tempProduct;
 	}

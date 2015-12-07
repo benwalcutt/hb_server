@@ -73,6 +73,7 @@ public class EventService {
 			temp_event.setEvent_date((Timestamp)this.rs.getObject("event_date"));
 		} catch (Exception e) {
 			System.out.println(e);
+			return null;
 		}
 		return temp_event;
 	}

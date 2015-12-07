@@ -68,6 +68,7 @@ public class VendorService {
 			temp_vendor.setLast_del_date((Timestamp)this.rs.getObject("last_del_date"));
 		} catch (Exception e) {
 			System.out.println(e);
+			return null;
 		}
 		return temp_vendor;
 	}

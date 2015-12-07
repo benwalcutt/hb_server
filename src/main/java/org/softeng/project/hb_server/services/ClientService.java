@@ -75,6 +75,7 @@ public class ClientService {
 			temp_client.setEmail(this.rs.getString("email"));
 		} catch (Exception e) {
 			System.out.println(e);
+			return null;
 		}
 		return temp_client;
 	}

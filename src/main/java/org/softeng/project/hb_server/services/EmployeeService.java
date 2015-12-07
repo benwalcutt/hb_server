@@ -67,6 +67,7 @@ public class EmployeeService {
 			
 		} catch (Exception e) {
 			System.out.println(e);
+			return null;
 		}
 		return temp_employee;
 	}
